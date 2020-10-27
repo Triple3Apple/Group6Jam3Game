@@ -44,13 +44,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.990566, g: 0.21596667, b: 0, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0
   m_Range: 12.27
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -105,13 +105,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23237dd375b45a345904c5f4dff790b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emergencyLight: {fileID: 0}
   maxLightItensity: 2.5
+  sirenLightTime: 2.5
   lightCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0026773661
-      value: 0.0023584664
+      time: 0.00054113567
+      value: 0.000008612871
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -119,8 +121,17 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.099019915
-      value: 0.99556893
+      time: 0.034927014
+      value: 0.030219313
+      inSlope: 4.094175
+      outSlope: 4.094175
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2324489
+    - serializedVersion: 3
+      time: 0.090471625
+      value: 0.99791706
       inSlope: -0.06490531
       outSlope: -0.06490531
       tangentMode: 0
@@ -128,7 +139,25 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.44036144
     - serializedVersion: 3
-      time: 0.2022264
+      time: 0.14728352
+      value: 0.09485002
+      inSlope: -5.9121027
+      outSlope: -5.9121027
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20217995
+      outWeight: 0.40178156
+    - serializedVersion: 3
+      time: 0.16846365
+      value: 0.0008972371
+      inSlope: -0.81048447
+      outSlope: -0.81048447
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.64646506
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.18751693
       value: 0
       inSlope: 0
       outSlope: 0
@@ -139,6 +168,9 @@ MonoBehaviour:
     m_PreInfinity: 0
     m_PostInfinity: 2
     m_RotationOrder: 4
+  glassEmissionRend: {fileID: 0}
+  normalGlassMaterial: {fileID: 0}
+  litGlassMaterial: {fileID: 0}
 --- !u!1 &715766961
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,13 +215,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.990566, g: 0.21596667, b: 0, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0
   m_Range: 12.27
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -244,13 +276,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23237dd375b45a345904c5f4dff790b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emergencyLight: {fileID: 0}
   maxLightItensity: 2.5
+  sirenLightTime: 2.5
   lightCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0026773661
-      value: 0.0023584664
+      time: 0.00054113567
+      value: 0.000008612871
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -258,8 +292,17 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.099019915
-      value: 0.99556893
+      time: 0.034927014
+      value: 0.030219313
+      inSlope: 4.094175
+      outSlope: 4.094175
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2324489
+    - serializedVersion: 3
+      time: 0.090471625
+      value: 0.99791706
       inSlope: -0.06490531
       outSlope: -0.06490531
       tangentMode: 0
@@ -267,7 +310,25 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.44036144
     - serializedVersion: 3
-      time: 0.2022264
+      time: 0.14728352
+      value: 0.09485002
+      inSlope: -5.9121027
+      outSlope: -5.9121027
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20217995
+      outWeight: 0.40178156
+    - serializedVersion: 3
+      time: 0.16846365
+      value: 0.0008972371
+      inSlope: -0.81048447
+      outSlope: -0.81048447
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.64646506
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.18751693
       value: 0
       inSlope: 0
       outSlope: 0
@@ -278,6 +339,9 @@ MonoBehaviour:
     m_PreInfinity: 0
     m_PostInfinity: 2
     m_RotationOrder: 4
+  glassEmissionRend: {fileID: 0}
+  normalGlassMaterial: {fileID: 0}
+  litGlassMaterial: {fileID: 0}
 --- !u!1 &3025332045180435979
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,9 +432,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3824102633267588210}
+  - component: {fileID: 2045371262}
   m_Layer: 0
   m_Name: emergency light
-  m_TagString: Untagged
+  m_TagString: EmergencyLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,6 +459,84 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+--- !u!114 &2045371262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4492940657148344008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23237dd375b45a345904c5f4dff790b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emergencyLight: {fileID: 7801737475596460378}
+  maxLightItensity: 6
+  sirenLightTime: 2.5
+  lightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.00054113567
+      value: 0.000008612871
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.034927014
+      value: 0.030219313
+      inSlope: 4.094175
+      outSlope: 4.094175
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2324489
+    - serializedVersion: 3
+      time: 0.090471625
+      value: 0.99791706
+      inSlope: -0.06490531
+      outSlope: -0.06490531
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.44036144
+    - serializedVersion: 3
+      time: 0.14728352
+      value: 0.09485002
+      inSlope: -5.9121027
+      outSlope: -5.9121027
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20217995
+      outWeight: 0.40178156
+    - serializedVersion: 3
+      time: 0.16846365
+      value: 0.0008972371
+      inSlope: -0.81048447
+      outSlope: -0.81048447
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.64646506
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.18751693
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 0
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  glassEmissionRend: {fileID: 4657473262863266435}
+  normalGlassMaterial: {fileID: 2100000, guid: 4551fd5953dd61a4399239fa99e6d5b7, type: 2}
+  litGlassMaterial: {fileID: 2100000, guid: b21ca6b9d7b946140934470db1299a3d, type: 2}
 --- !u!1 &6038794034749404095
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +547,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1650350318068773709}
   - component: {fileID: 7801737475596460378}
-  - component: {fileID: 6349714672858981513}
   m_Layer: 0
   m_Name: Emergency Point Light
   m_TagString: Untagged
@@ -487,79 +629,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &6349714672858981513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6038794034749404095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23237dd375b45a345904c5f4dff790b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxLightItensity: 6
-  lightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.00054113567
-      value: 0.000008612871
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.034927014
-      value: 0.030219313
-      inSlope: 4.094175
-      outSlope: 4.094175
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.2324489
-    - serializedVersion: 3
-      time: 0.090471625
-      value: 0.99791706
-      inSlope: -0.06490531
-      outSlope: -0.06490531
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.44036144
-    - serializedVersion: 3
-      time: 0.14728352
-      value: 0.09485002
-      inSlope: -5.9121027
-      outSlope: -5.9121027
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.20217995
-      outWeight: 0.40178156
-    - serializedVersion: 3
-      time: 0.16846365
-      value: 0.0008972371
-      inSlope: -0.81048447
-      outSlope: -0.81048447
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.64646506
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.18751693
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 0
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &6667997479907036823
 GameObject:
   m_ObjectHideFlags: 0

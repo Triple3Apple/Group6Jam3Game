@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ae9d301d18f134e8e05a3778e251f7, type: 3}
+  m_Name: Swap_Dark
+  m_EditorClassIdentifier: 
+  l_Light:
+  - {fileID: 2800000, guid: b377684359c0682418d2d0f8e2eb31ae, type: 3}
+  - {fileID: 2800000, guid: 8ff964bd081ad1944ae85c00f180db98, type: 3}
+  - {fileID: 2800000, guid: ca2cd145e5b5ffc4e87fc91e9a74d007, type: 3}
+  - {fileID: 2800000, guid: 4dd585b735c889040a5137658ebea86c, type: 3}
+  - {fileID: 2800000, guid: f173219b6a3fbdb48aa8fdb687ad5668, type: 3}
+  l_Dir:
+  - {fileID: 2800000, guid: 0e4b4249efe0c624fb752c4a133b4a87, type: 3}
+  - {fileID: 2800000, guid: 93b8bd68c5fe5114bbb2cce5d4fe1f4a, type: 3}
+  - {fileID: 2800000, guid: 376f94db09ee028498dbe87441b4e93e, type: 3}
+  - {fileID: 2800000, guid: 3dc88ceb9deb2614eb4059c915e939cd, type: 3}
+  - {fileID: 2800000, guid: a0da23f7cff3d3f4cbe4df892c963254, type: 3}
+  lightProbesData: []
+  l_LightTemp: []
+  l_DirTemp: []
