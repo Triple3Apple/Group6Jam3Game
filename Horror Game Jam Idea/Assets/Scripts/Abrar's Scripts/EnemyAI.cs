@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] GameObject enemyMesh;
 
-    private float moveSpeed;
+    [SerializeField] private float defaultMoveSpeed = 5f;
 
     private int nextWaypointIndex;
 
@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour
     {
         //sensor = GetComponent<FOVCollider>();
         steering.RotateTowardsTarget = false;
-        moveSpeed = steering.MoveSpeed;
+        //moveSpeed = steering.MoveSpeed;
         StartCoroutine(PatrolState());
     }
 
@@ -68,6 +68,8 @@ public class EnemyAI : MonoBehaviour
     IEnumerator PatrolState()
     {
         nextWaypointIndex = getNearestWaypointIndex();
+
+        Debug.Log("Current WayPoint Index");
 
         Start:
 
@@ -151,7 +153,7 @@ public class EnemyAI : MonoBehaviour
         steering.FaceTowardsTransform = targetToChase.transform;
 
         // when enemy sees player, increase enemy movement speed by a bit
-        steering.MoveSpeed = moveSpeed + 1f;
+        steering.MoveSpeed = defaultMoveSpeed + 1f;
 
         Start:
 
@@ -192,7 +194,7 @@ public class EnemyAI : MonoBehaviour
         steering.Destination = lastTargetPosition;
         float timer = 0f;
 
-        steering.MoveSpeed = moveSpeed;
+        steering.MoveSpeed = defaultMoveSpeed;
 
         Start:
 
@@ -213,7 +215,7 @@ public class EnemyAI : MonoBehaviour
         steering.DestinationTransform = null;
         steering.Destination = transform.position;
 
-        steering.MoveSpeed = moveSpeed;
+        steering.MoveSpeed = defaultMoveSpeed;
 
         float timer = pauseStateDuration;
         while (timer > 0f)
@@ -252,7 +254,8 @@ public class EnemyAI : MonoBehaviour
 
     public void EnableEnemy()
     {
-        steering.MoveSpeed = moveSpeed;
+        Debug.Log("--------MOVE speed: " + defaultMoveSpeed);
+        steering.MoveSpeed = defaultMoveSpeed;
         enemyMesh.SetActive(true);
     }
 

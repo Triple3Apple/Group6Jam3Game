@@ -50,7 +50,7 @@ public class TimeManager : MonoBehaviour
         enemyManager.DisableAllEnemies();
 
         //NotifyThatLightsAreOn();
-        Debug.Log("Notifying that lights are now on");
+        //Debug.Log("Notifying that lights are now on");
         onLightsOnTimerStart();
 
 
@@ -66,7 +66,7 @@ public class TimeManager : MonoBehaviour
         enemyManager.EnableAllEnemies();
 
         //NotifyThatLightsAreOff();
-        Debug.Log("Notifying that lights are now off");
+        //Debug.Log("Notifying that lights are now off");
         onLightsOffTimerStart();
 
         yield return new WaitForSeconds(lightsOffTime);
@@ -77,14 +77,14 @@ public class TimeManager : MonoBehaviour
     private void NotifyThatLightsAreOn()
     {
         // fire event
-        Debug.Log("Notifying that lights are now on");
+        //Debug.Log("Notifying that lights are now on");
         onLightsOnTimerStart();
     }
 
     private void NotifyThatLightsAreOff()
     {
         // fire event
-        Debug.Log("Notifying that lights are now off");
+        //debug.Log("Notifying that lights are now off");
         onLightsOffTimerStart();
     }
 }

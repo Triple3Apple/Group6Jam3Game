@@ -77,7 +77,7 @@ public class ClockManager : MonoBehaviour
     private void DoLightsOnActions()
     {
         //clockCycleFinished = false; // set to false since clock cycle is being started again
-        Debug.Log("ClockCycleOff coroutine called");
+        //Debug.Log("ClockCycleOff coroutine called");
         DoFourthClockCycleLightsOn();
     }
 
@@ -85,7 +85,7 @@ public class ClockManager : MonoBehaviour
     private void DoLightsOffActions()
     {
         //clockCycleFinished = false; // set to false since clock cycle is being started again
-        Debug.Log("ClockCycleOff coroutine called");
+        //Debug.Log("ClockCycleOff coroutine called");
         DoFourthClockCycleLightsOff();
     }
 
@@ -94,7 +94,7 @@ public class ClockManager : MonoBehaviour
     {
         if (loopCount >= 4)
         {
-            Debug.Log("clockhand on has reached final rotation");
+            //Debug.Log("clockhand on has reached final rotation");
 
             //clockCycleFinished = true;
 
@@ -105,7 +105,7 @@ public class ClockManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("starting forth clock cycle lights on, loopCount = " + loopCount);
+        //Debug.Log("starting forth clock cycle lights on, loopCount = " + loopCount);
         loopCount++;
         clockHand.transform.DORotate(
         new Vector3(
@@ -120,7 +120,7 @@ public class ClockManager : MonoBehaviour
     {
         if (loopCount >= 4)
         {
-            Debug.Log("clockhand off has reached final rotation");
+            //Debug.Log("clockhand off has reached final rotation");
 
             //clockCycleFinished = true;
             loopCount = 0;
@@ -129,7 +129,7 @@ public class ClockManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("starting forth clock cycle lights off, loopCount = " + loopCount);
+        //Debug.Log("starting forth clock cycle lights off, loopCount = " + loopCount);
         loopCount++;
         clockHand.transform.DORotate(
         new Vector3(
