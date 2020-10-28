@@ -19,6 +19,6 @@ public class MusicController : MonoBehaviour
     {
         int _rand = Random.Range(0, soundTracks.Length);
 
-        audioSource.PlayOneShot(soundTracks[_rand], 0.15f);
+        audioSource.PlayOneShot(soundTracks[_rand]);
     }
 }

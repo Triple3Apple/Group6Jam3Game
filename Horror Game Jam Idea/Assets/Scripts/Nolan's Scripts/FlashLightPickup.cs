@@ -8,7 +8,7 @@ public class FlashLightPickup : MonoBehaviour, IInteractable
 
     public void OnStartHover()
     {
-        Debug.Log("You can now pickup the flashlight");
+        //Debug.Log("You can now pickup the flashlight");
     }
 
     public void OnInteract()
@@ -20,6 +20,6 @@ public class FlashLightPickup : MonoBehaviour, IInteractable
 
     public void OnEndHover()
     {
-        Debug.Log("You can't pickup the flashlight anymore.");
+        //Debug.Log("You can't pickup the flashlight anymore.");
     }
 }

@@ -9,38 +9,38 @@ public class HingeDoor : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip doorOpenSFX = null;
     [SerializeField] private AudioClip doorCloseSFX = null;
     [SerializeField] private Transform pivotPoint = null;
-    [SerializeField] private float speed = 3f;
+    [SerializeField] private float duration = 2.4f;
     [SerializeField] private float openDegree = 0f;
     [SerializeField] private float closedDegree = 90f;
 
     private AudioSource audioSource;
     private bool isOpen = false;
-    private Quaternion openRot;
-    private Quaternion closedRot;
+    private Vector3 openRot;
+    private Vector3 closedRot;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
 
-        openRot = Quaternion.Euler(0, openDegree, 0);
-        closedRot = Quaternion.Euler(0, closedDegree, 0);
+        openRot = new Vector3(0, openDegree, 0);
+        closedRot = new Vector3(0, closedDegree, 0);
     }
 
     private void OpenDoor()
     {
-        audioSource.PlayOneShot(doorOpenSFX, .1f);
-        pivotPoint.DORotateQuaternion(openRot, speed);
+        audioSource.PlayOneShot(doorOpenSFX);
+        pivotPoint.DORotate(openRot, duration, RotateMode.Fast);
     }
 
     private void CloseDoor()
     {
-        audioSource.PlayOneShot(doorCloseSFX, .1f);
-        pivotPoint.DORotateQuaternion(closedRot, speed);
+        audioSource.PlayOneShot(doorCloseSFX);
+        pivotPoint.DORotate(closedRot, duration, RotateMode.Fast);
     }
 
     public void OnStartHover()
     {
-        Debug.Log($"{gameObject.name} is ready to be opened.");
+        //Debug.Log($"{gameObject.name} is ready to be opened.");
     }
 
     public void OnInteract()
@@ -61,6 +61,6 @@ public class HingeDoor : MonoBehaviour, IInteractable
 
     public void OnEndHover()
     {
-        Debug.Log($"{gameObject.name} cannot be opened anymore.");
+        //Debug.Log($"{gameObject.name} cannot be opened anymore.");
     }
 }
