@@ -13,6 +13,10 @@ public class LightsManager : MonoBehaviour
     [SerializeField] private List<EmergencyLight> emergencyLights;
     //[SerializeField] private List<NormalLight> normalLights;
 
+    [SerializeField] private List<Light> realTimeLights;
+
+    [SerializeField] private List<NormalLight> bakedLights;
+
     private LightmapManagerTest lightmapManager;
 
 
@@ -54,11 +58,16 @@ public class LightsManager : MonoBehaviour
         }
 
         // new comment out!!!!!!!!!!!!
-        /*
-        foreach (NormalLight normLight in normalLights)
+        // turning ON realtime lights
+        foreach (Light realLight in realTimeLights)
         {
-            normLight.ActivateLights();
-        }*/
+            realLight.enabled = true;
+        }
+
+        foreach (NormalLight bakedLight in bakedLights)
+        {
+            bakedLight.ActivateLights();
+        }
 
 
     }
@@ -70,12 +79,17 @@ public class LightsManager : MonoBehaviour
         Debug.Log("DoLightsOffActions() was called");
 
         // new comment out!!!!!!!!!!!!
-        /*
-        foreach (NormalLight normLight in normalLights)
+        // disabling realTime Lights
+        foreach (Light realLight in realTimeLights)
         {
-            normLight.StopLights();
+            realLight.enabled = false;
         }
-        */
+
+        foreach (NormalLight bakedLight in bakedLights)
+        {
+            bakedLight.StopLights();
+        }
+
 
         foreach (EmergencyLight emerLight in emergencyLights)
         {

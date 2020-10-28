@@ -21,10 +21,20 @@ public class TimeManager : MonoBehaviour
 
     private EnemiesManager enemyManager;
 
+    [SerializeField] float fogIncreasePerSecond = 0.03f;
+
+    [SerializeField] float fogLimit = 0.1f;
+
+    private bool isIncreasingFog = false;
+    private AudioManager audioManager;
+
+    private bool justStartedGame = true;
+
     private void Awake()
     {
         //current = this;
         enemyManager = FindObjectOfType<EnemiesManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Start()
@@ -34,6 +44,20 @@ public class TimeManager : MonoBehaviour
 
         onTimeManagerStarted();
         StartCoroutine(RunUntilLightsOnTimerEnds());
+    }
+
+    private void Update()
+    {
+        if (isIncreasingFog)
+        {
+            RenderSettings.fogDensity += fogIncreasePerSecond * Time.deltaTime;
+
+            // if fog reached limit then stop fog fade in
+            if (RenderSettings.fogDensity >= fogLimit)
+            {
+                isIncreasingFog = false;
+            }
+        }
     }
 
     // this will/should be called by gamemanager when game officially starts
@@ -46,6 +70,14 @@ public class TimeManager : MonoBehaviour
     // runs until lightsOnTimer seconds has passed (LIGHTS ON)
     IEnumerator RunUntilLightsOnTimerEnds()
     {
+        // makes it so the sound does not play when level is first started
+        if (justStartedGame == false)
+        {
+            PlayPowerUpNoise();
+        }
+        else justStartedGame = false;
+        
+        RenderSettings.fog = false;
         //enable all enemies
         enemyManager.DisableAllEnemies();
 
@@ -62,6 +94,14 @@ public class TimeManager : MonoBehaviour
     //  (LIGHTS OFF)
     IEnumerator RunUntilLightsOffTimerEnds()
     {
+        
+        PlayPowerDownNoise();
+
+        RenderSettings.fog = true;
+        RenderSettings.fogDensity = 0f;
+        isIncreasingFog = true;
+        //RenderSettings.fogDensity = 
+
         //enable all enemies
         enemyManager.EnableAllEnemies();
 
@@ -86,5 +126,15 @@ public class TimeManager : MonoBehaviour
         // fire event
         //debug.Log("Notifying that lights are now off");
         onLightsOffTimerStart();
+    }
+
+    private void PlayPowerDownNoise()
+    {
+        audioManager.PlayPowerDownSound();
+    }
+
+    private void PlayPowerUpNoise()
+    {
+        audioManager.PlayPowerUpSound();
     }
 }

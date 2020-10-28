@@ -22,54 +22,34 @@ public class EnemyAI : MonoBehaviour
     private bool ascendingIndex = true;
 
     [SerializeField] GameObject enemyMesh;
+    [SerializeField] GameObject candle;
 
     [SerializeField] private float defaultMoveSpeed = 5f;
 
     private int nextWaypointIndex;
+
+    private EnemyAnimatorController enemyAnimController;
+
+    private bool lightsAreOn = true;
 
     // Start is called before the first frame update
     void Start()
     {
         //sensor = GetComponent<FOVCollider>();
         steering.RotateTowardsTarget = false;
+        enemyAnimController = GetComponent<EnemyAnimatorController>();
         //moveSpeed = steering.MoveSpeed;
         StartCoroutine(PatrolState());
     }
-
-    // Update is called once per frame
-    /*
-    void Update()
-    {
-        if (sightSensor.GetDetectedByTag("Player").Count > 0)
-        {
-            List<GameObject> detectedPlayerArray = sightSensor.GetDetectedByTag("Player");
-            Debug.Log("Player detected");
-            Debug.Log(detectedPlayerArray.Count);
-            ChaseTarget(detectedPlayerArray[0]);
-        }
-        else
-        {
-
-            if (Vector3.Distance(patrolPathWayPoints[0].position, transform.position) > 5)
-            {
-                GoToPatrolPoint(patrolPathWayPoints[0]);
-                Debug.Log("Going to patrol point");
-            }
-            else
-            {
-                Idle();
-                Debug.Log("Player NOT detected");
-            }
-            
-        }
-    }
-    */
 
     IEnumerator PatrolState()
     {
         nextWaypointIndex = getNearestWaypointIndex();
 
         Debug.Log("Current WayPoint Index");
+        Debug.Log("PATROLING");
+
+        enemyAnimController.SetAnimatorToWalk();
 
         Start:
 
@@ -128,7 +108,7 @@ public class EnemyAI : MonoBehaviour
 
     private bool attackEnemyIfSpotted()
     {
-        if (sightSensor.GetDetectedByTag("Player").Count > 0)
+        if (sightSensor.GetDetectedByTag("Player").Count > 0 && lightsAreOn == false)
         {
             List<GameObject> detectedPlayerArray = sightSensor.GetDetectedByTag("Player");
             Debug.Log("Player detected");
@@ -147,13 +127,18 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator ChasePlayerState(GameObject targetToChase)
     {
+
+        Debug.Log("CHASING");
         //steering.DestinationTransform = null;
 
         steering.DestinationTransform = targetToChase.transform;    // new
         steering.FaceTowardsTransform = targetToChase.transform;
 
         // when enemy sees player, increase enemy movement speed by a bit
-        steering.MoveSpeed = defaultMoveSpeed + 1f;
+        steering.MoveSpeed = defaultMoveSpeed + 3f;
+
+
+        enemyAnimController.SetAnimatorToRun();
 
         Start:
 
@@ -177,18 +162,22 @@ public class EnemyAI : MonoBehaviour
             yield break;
         }
 
-        // Roate the gun in hand to face the enemy, reload if empty, otherwise fire the gun.
-        //GunPivot.transform.LookAt(new Vector3(ToAttack.transform.position.x, GunPivot.transform.position.y, ToAttack.transform.position.z));
-        //if (gun.IsEmptyClip) gun.Reload();
-        //else gun.Fire();
-
         yield return null;
         goto Start;
-
     }
 
     IEnumerator InvestigateLastLocationState(Vector3 lastTargetPosition)
     {
+        Debug.Log("INVESTIGATING");
+
+        WaitUntilLightsOff:
+
+        if (lightsAreOn == true)
+        {
+            Debug.Log("investigating but WAITING");
+            yield return null;
+            goto WaitUntilLightsOff;
+        }
 
         steering.DestinationTransform = null;
         steering.Destination = lastTargetPosition;
@@ -196,14 +185,19 @@ public class EnemyAI : MonoBehaviour
 
         steering.MoveSpeed = defaultMoveSpeed;
 
+        enemyAnimController.SetAnimatorToIdle();
+
         Start:
 
-        if (attackEnemyIfSpotted()) yield break;
-
-        timer += Time.deltaTime;
-        if (timer > investigateStateDuration || !steering.IsSeeking)
+        if (lightsAreOn == false)
         {
-            StartCoroutine(PauseState()); yield break;
+            if (attackEnemyIfSpotted()) yield break;
+
+            timer += Time.deltaTime;
+            if (timer > investigateStateDuration || !steering.IsSeeking)
+            {
+                StartCoroutine(PauseState()); yield break;
+            }
         }
 
         yield return null;
@@ -212,10 +206,13 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator PauseState()
     {
+        Debug.Log("PAUSE-ING");
         steering.DestinationTransform = null;
         steering.Destination = transform.position;
 
         steering.MoveSpeed = defaultMoveSpeed;
+
+        enemyAnimController.SetAnimatorToIdle();
 
         float timer = pauseStateDuration;
         while (timer > 0f)
@@ -226,8 +223,17 @@ public class EnemyAI : MonoBehaviour
             yield return null;
         }
 
-        // after pause state, go back to patrolling
-        StartCoroutine(PatrolState()); yield break;
+        Start: 
+
+        if (lightsAreOn == false)
+        {
+            // after pause state, go back to patrolling
+            StartCoroutine(PatrolState()); yield break;
+        }
+
+        yield return null;
+        goto Start;
+
     }
 
     private int getNearestWaypointIndex()
@@ -246,42 +252,27 @@ public class EnemyAI : MonoBehaviour
         return nearest;
     }
 
+    // called by enemyManager (remember to add enemy to enemyManager list)
     public void DisableEnemy()
     {
+        //Debug.Log("-----------------------Enemy mOVEsPEED = 0------------------------");
+        lightsAreOn = true;
+
         steering.MoveSpeed = 0f;
         enemyMesh.SetActive(false);
+        candle.SetActive(true);
+        Debug.Log("Steering move speed = " + steering.MoveSpeed);
     }
 
+    // called by enemyManager (remember to add enemy to enemyManager list)
     public void EnableEnemy()
     {
-        Debug.Log("--------MOVE speed: " + defaultMoveSpeed);
+        //Debug.Log("-----------------------Enemy mOVEsPEED = NORMAL------------------------");
+
+        lightsAreOn = false;
+
         steering.MoveSpeed = defaultMoveSpeed;
         enemyMesh.SetActive(true);
-    }
-
-
-
-
-
-    private void ChaseTarget(GameObject target)
-    {
-        var speed = 4f;
-        transform.LookAt(target.transform);
-        //transform.position += transform.forward * speed * Time.deltaTime;
-        steering.DestinationTransform = target.transform;
-    }
-
-    private void Idle()
-    {
-        steering.DestinationTransform = null;
-        // do nothing
-    }
-
-    private void GoToPatrolPoint(Transform target)
-    {
-        var speed = 4f;
-        transform.LookAt(target.transform);
-        //transform.position += transform.forward * speed * Time.deltaTime;
-        steering.DestinationTransform = target.transform;
+        candle.SetActive(false);
     }
 }

@@ -24,12 +24,22 @@ public class ClockManager : MonoBehaviour
     // keep track of whether the clock cycle has ended
     private bool clockCycleFinished = false;
 
+    [SerializeField] private AnimationCurve clockSoundCurve;
+
+    private AudioSource clockSoundSource;
+
+    private AudioManager audioManager;
+
 
     // Start is called before the first frame update
 
     private void Awake()
     {
         SubscribeToTimeEvents();
+
+        clockSoundSource = GetComponent<AudioSource>();
+
+        audioManager = FindObjectOfType<AudioManager>();
     }
     /*
     void Start()
@@ -105,6 +115,11 @@ public class ClockManager : MonoBehaviour
             return;
         }
 
+        if (loopCount == 3)
+        {
+            IncreaseClockAudio();
+        }
+
         //Debug.Log("starting forth clock cycle lights on, loopCount = " + loopCount);
         loopCount++;
         clockHand.transform.DORotate(
@@ -129,6 +144,11 @@ public class ClockManager : MonoBehaviour
             return;
         }
 
+        if (loopCount == 3)
+        {
+            IncreaseClockAudio();
+        }
+
         //Debug.Log("starting forth clock cycle lights off, loopCount = " + loopCount);
         loopCount++;
         clockHand.transform.DORotate(
@@ -139,4 +159,14 @@ public class ClockManager : MonoBehaviour
         lightsOffTime / 4, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).OnComplete(DoFourthClockCycleLightsOff);
 
     }
+
+    private void IncreaseClockAudio()
+    {
+        Debug.Log("Increasing clock Audio");
+        float initClockVolume = clockSoundSource.volume;
+        clockSoundSource.DOFade(0.5f, lightsOnTime/4f).SetEase(clockSoundCurve).OnComplete(()=>ResetAudioVolume(initClockVolume));
+    }
+
+    private void ResetAudioVolume(float vol) { clockSoundSource.volume = vol;  }
+
 }

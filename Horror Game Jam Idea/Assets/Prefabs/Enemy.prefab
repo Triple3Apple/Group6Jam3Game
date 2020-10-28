@@ -199,6 +199,8 @@ MonoBehaviour:
   waypointArrivalDistance: 1
   wayPointsLooping: 0
   enemyMesh: {fileID: 720587359669823779}
+  candle: {fileID: 3363869020255053092, guid: a325f605903b30f4ba92eef784d6bbad, type: 3}
+  defaultMoveSpeed: 5
 --- !u!1 &5207619580268689355
 GameObject:
   m_ObjectHideFlags: 0
