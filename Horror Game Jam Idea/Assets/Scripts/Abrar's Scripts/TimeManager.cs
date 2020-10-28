@@ -95,7 +95,7 @@ public class TimeManager : MonoBehaviour
     IEnumerator RunUntilLightsOffTimerEnds()
     {
         
-        PlayPowerDownNoise();
+        PlayPowerDownNoise(lightsOffTime);
 
         RenderSettings.fog = true;
         RenderSettings.fogDensity = 0f;
@@ -128,9 +128,9 @@ public class TimeManager : MonoBehaviour
         onLightsOffTimerStart();
     }
 
-    private void PlayPowerDownNoise()
+    private void PlayPowerDownNoise(float lightsOffDuration)
     {
-        audioManager.PlayPowerDownSound();
+        audioManager.PlayPowerDownSound(lightsOffDuration);
     }
 
     private void PlayPowerUpNoise()
