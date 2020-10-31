@@ -41,7 +41,7 @@ public class EmergencyLight : MonoBehaviour
         //Color col = new Color(0.1f, 0f, 0f, 1f);
         //glassEmissionMaterial.SetColor("_EmissionColor", col);
         glassEmissionRend.material = normalGlassMaterial;
-        Debug.Log("Stop emergency Light called---------------------------");
+        //Debug.Log("Stop emergency Light called---------------------------");
         emergencyLight.enabled = false;
         DOTween.Kill(transform);
     }
@@ -51,7 +51,7 @@ public class EmergencyLight : MonoBehaviour
         // set emergency light emission color to red
         //glassEmissionMaterial.SetColor("_EmissionColor", initialEmissionColor);
 
-        Debug.Log("activate emergency light called---------------------------");
+        //Debug.Log("activate emergency light called---------------------------");
         glassEmissionRend.material = litGlassMaterial;
         emergencyLight.enabled = true;
         emergencyLight.DOIntensity(maxLightItensity, sirenLightTime).SetLoops(-1, LoopType.Yoyo).SetEase(lightCurve);

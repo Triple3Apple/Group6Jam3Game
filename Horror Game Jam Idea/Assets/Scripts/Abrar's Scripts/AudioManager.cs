@@ -5,9 +5,19 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Level Sounds")]
     [SerializeField] private AudioClip powerDownSound;
     [SerializeField] private AudioClip powerUpSound;
     [SerializeField] private AudioClip lightOffAmbiance;
+
+    [Header("Chasing and Scare Sounds")]
+    [SerializeField] private AudioClip chaseMusic;
+    [SerializeField] private AudioClip caughtSound;
+    [SerializeField] private AudioSource chaseMusicAudioSource;
+    [SerializeField] private AudioSource caughtAudioSource;
+    [SerializeField] private float chaseVolume = 0.3f;
+    [SerializeField] private float caughtVolume = 0.3f;
+
 
     private float initialVolume;
 
@@ -16,10 +26,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AnimationCurve powerdownSoundCurve;
 
     [SerializeField] private AnimationCurve ambianceSoundCurve;
+
+
     private void Start()
     {
         audioManSource = GetComponent<AudioSource>();
         initialVolume = audioManSource.volume;
+        chaseMusicAudioSource.volume = 0.3f;
+        chaseVolume = chaseMusicAudioSource.volume;
     }
 
     public void PlayPowerDownSound(float lightsOffDuration)
@@ -43,6 +57,32 @@ public class AudioManager : MonoBehaviour
     {
         audioManSource.DOFade(initialVolume, powerUpSound.length).SetEase(ambianceSoundCurve);
         audioManSource.PlayOneShot(lightOffAmbiance);
+    }
+
+    // play chase music
+    public void PlayChaseMusic()
+    {
+        chaseMusicAudioSource.volume = chaseVolume;
+        chaseMusicAudioSource.Play();
+        
+    }
+
+    // stop chase music
+    public void StopChaseMusic()
+    {
+        Debug.Log("STOPPING CHASE MUSIC---------------");
+        // fades chase music and then stops audio after 1 second
+        chaseMusicAudioSource.DOFade(0, 1f).SetEase(Ease.Linear).OnComplete(chaseMusicAudioSource.Stop);
+
+        // sets audiosouce volume back to original
+        
+    }
+
+    public void PlayCaughtMusic()
+    {
+        caughtAudioSource.volume = caughtVolume;
+        Debug.Log("Playing caught music!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        caughtAudioSource.Play();
     }
 
 }

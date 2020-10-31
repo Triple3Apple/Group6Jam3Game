@@ -18,7 +18,11 @@ public class ClockManager : MonoBehaviour
     private float clockHandCurrentAngle = 0f;
     private float startAngle = -90f;
 
-    private int loopCount = 0;
+    //private int loopCount = 0;
+
+    private int lightOnLoopCount = 0;
+    private int lightOffLoopCount = 0;
+
     private float initialXRot;
 
     // keep track of whether the clock cycle has ended
@@ -68,7 +72,9 @@ public class ClockManager : MonoBehaviour
         // find TimeManager object to set lightsOutTime and lightsOnTime
         TimeManager tm = FindObjectOfType<TimeManager>();
         lightsOnTime = tm.lightsOnTime;
+        Debug.Log("lights on time: " + lightsOnTime);
         lightsOffTime = tm.lightsOffTime;
+        Debug.Log("lights off time: " + lightsOffTime);
 
         Debug.Log("time for clock has been set up");
     }
@@ -102,61 +108,79 @@ public class ClockManager : MonoBehaviour
     // This method runs 4 times (each time it rotates the clock hand by 1/4th of the clock face)
     public void DoFourthClockCycleLightsOn()
     {
-        if (loopCount >= 4)
+        if (lightOnLoopCount >= 4)
         {
             //Debug.Log("clockhand on has reached final rotation");
 
             //clockCycleFinished = true;
 
-            loopCount = 0;
+            lightOnLoopCount = 0;
             //DoFourthClockCycleLightsOff();
             
 
             return;
         }
 
-        if (loopCount == 3)
+        if (lightOnLoopCount == 3)
         {
             IncreaseClockAudio();
         }
 
         //Debug.Log("starting forth clock cycle lights on, loopCount = " + loopCount);
-        loopCount++;
+        lightOnLoopCount++;
+        //Debug.Log("+++++++++++++++Lights ON Time/4 = " + lightsOnTime / 4 + " Loop Count = " + lightOnLoopCount);
+        clockHand.transform.DORotate(
+        new Vector3(
+            clockHand.transform.localRotation.x + 90f,
+            clockHand.transform.localRotation.y,
+            clockHand.transform.localRotation.z),
+        lightsOnTime / 4, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).OnComplete(DoFourthClockCycleLightsOn);
+        /*
         clockHand.transform.DORotate(
         new Vector3(
             clockHand.transform.rotation.x + 90f,
             clockHand.transform.rotation.y,
             clockHand.transform.rotation.z),
         lightsOnTime / 4, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).OnComplete(DoFourthClockCycleLightsOn);
+        */
 
     }
 
     public void DoFourthClockCycleLightsOff()
     {
-        if (loopCount >= 4)
+        if (lightOffLoopCount >= 4)
         {
             //Debug.Log("clockhand off has reached final rotation");
 
             //clockCycleFinished = true;
-            loopCount = 0;
+            lightOffLoopCount = 0;
             //DoFourthClockCycleLightsOn();
 
             return;
         }
 
-        if (loopCount == 3)
+        if (lightOffLoopCount == 3)
         {
             IncreaseClockAudio();
         }
 
         //Debug.Log("starting forth clock cycle lights off, loopCount = " + loopCount);
-        loopCount++;
+        lightOffLoopCount++;
+        //Debug.Log("+++++++++++++++Lights OFF Time/4 = " + lightsOffTime / 4 + " Loop Count = " + lightOffLoopCount);
+        clockHand.transform.DORotate(
+        new Vector3(
+            clockHand.transform.localRotation.x + 90f,
+            clockHand.transform.localRotation.y,
+            clockHand.transform.localRotation.z),
+        lightsOffTime / 4, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).OnComplete(DoFourthClockCycleLightsOff);
+        /*
         clockHand.transform.DORotate(
         new Vector3(
             clockHand.transform.rotation.x + 90f,
             clockHand.transform.rotation.y,
             clockHand.transform.rotation.z),
         lightsOffTime / 4, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).OnComplete(DoFourthClockCycleLightsOff);
+        */
 
     }
 

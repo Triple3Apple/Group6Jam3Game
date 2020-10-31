@@ -76,7 +76,7 @@ public class LightsManager : MonoBehaviour
     {
         lightmapManager.ToggleLightsOff();
 
-        Debug.Log("DoLightsOffActions() was called");
+        //Debug.Log("DoLightsOffActions() was called");
 
         // new comment out!!!!!!!!!!!!
         // disabling realTime Lights

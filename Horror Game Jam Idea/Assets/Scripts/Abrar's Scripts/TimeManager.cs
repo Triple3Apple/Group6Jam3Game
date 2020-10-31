@@ -70,6 +70,9 @@ public class TimeManager : MonoBehaviour
     // runs until lightsOnTimer seconds has passed (LIGHTS ON)
     IEnumerator RunUntilLightsOnTimerEnds()
     {
+
+        Debug.Log("LIGHTS ON");
+
         // makes it so the sound does not play when level is first started
         if (justStartedGame == false)
         {
@@ -94,7 +97,9 @@ public class TimeManager : MonoBehaviour
     //  (LIGHTS OFF)
     IEnumerator RunUntilLightsOffTimerEnds()
     {
-        
+        Debug.Log("LIGHTS OFF");
+
+
         PlayPowerDownNoise(lightsOffTime);
 
         RenderSettings.fog = true;

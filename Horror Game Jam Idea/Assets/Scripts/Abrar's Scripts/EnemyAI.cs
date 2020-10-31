@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Enemy AI")]
     [SerializeField] private Sensor sightSensor;
     [SerializeField] private SteeringRig steering;
 
     [SerializeField] private Transform[] patrolPathWayPoints;
 
+    // if false then the waypoint index will ping pong
+    [SerializeField] bool wayPointsLooping = true;
+    private bool ascendingIndex = true;
+
+    [Header("State Durations")]
     // how much time spent investigating plays last position
     [SerializeField] float investigateStateDuration = 2.5f;
     [SerializeField] float pauseStateDuration = 2.5f;
@@ -17,13 +23,12 @@ public class EnemyAI : MonoBehaviour
     // how close (distance) the enemy has to get to waypoint to reach it
     [SerializeField] float waypointArrivalDistance = 3f;
 
-    // if false then the waypoint index will ping pong
-    [SerializeField] bool wayPointsLooping = true;
-    private bool ascendingIndex = true;
-
+    [Header("Enemy Mesh and Candle")]
     [SerializeField] GameObject enemyMesh;
     [SerializeField] GameObject candle;
+    [SerializeField] GameObject scareCollider;
 
+    [Header("Enemy Move Speed")]
     [SerializeField] private float defaultMoveSpeed = 5f;
 
     private int nextWaypointIndex;
@@ -32,9 +37,21 @@ public class EnemyAI : MonoBehaviour
 
     private bool lightsAreOn = true;
 
+    private bool isChasingPlayer = false;
+
+    private EnemiesManager enemyManager;
+
+    private void Awake()
+    {
+        enemyManager = FindObjectOfType<EnemiesManager>();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+        //enemyManager = FindObjectOfType<EnemiesManager>();
+
         //sensor = GetComponent<FOVCollider>();
         steering.RotateTowardsTarget = false;
         enemyAnimController = GetComponent<EnemyAnimatorController>();
@@ -44,6 +61,9 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator PatrolState()
     {
+        isChasingPlayer = false;
+        enemyManager.NotChasingEnemy();
+
         nextWaypointIndex = getNearestWaypointIndex();
 
         Debug.Log("Current WayPoint Index");
@@ -127,6 +147,8 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator ChasePlayerState(GameObject targetToChase)
     {
+        isChasingPlayer = true;
+        enemyManager.ChasingEnemy();
 
         Debug.Log("CHASING");
         //steering.DestinationTransform = null;
@@ -168,13 +190,16 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator InvestigateLastLocationState(Vector3 lastTargetPosition)
     {
+        isChasingPlayer = false;
+        enemyManager.NotChasingEnemy();
+
         Debug.Log("INVESTIGATING");
 
         WaitUntilLightsOff:
 
         if (lightsAreOn == true)
         {
-            Debug.Log("investigating but WAITING");
+            //Debug.Log("investigating but WAITING");
             yield return null;
             goto WaitUntilLightsOff;
         }
@@ -206,6 +231,9 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator PauseState()
     {
+        isChasingPlayer = false;
+        enemyManager.NotChasingEnemy();
+
         Debug.Log("PAUSE-ING");
         steering.DestinationTransform = null;
         steering.Destination = transform.position;
@@ -256,10 +284,15 @@ public class EnemyAI : MonoBehaviour
     public void DisableEnemy()
     {
         //Debug.Log("-----------------------Enemy mOVEsPEED = 0------------------------");
+        isChasingPlayer = false;
+        enemyManager.NotChasingEnemy();
+
         lightsAreOn = true;
 
         steering.MoveSpeed = 0f;
         enemyMesh.SetActive(false);
+        scareCollider.SetActive(false);
+
         candle.SetActive(true);
         Debug.Log("Steering move speed = " + steering.MoveSpeed);
     }
@@ -273,6 +306,18 @@ public class EnemyAI : MonoBehaviour
 
         steering.MoveSpeed = defaultMoveSpeed;
         enemyMesh.SetActive(true);
+        scareCollider.SetActive(true);
+
         candle.SetActive(false);
     }
+
+    // called by EnemiesManager to see if enemy is chasing the player
+    public bool IsEnemyChasingPlayer() { return isChasingPlayer; }
+
+    public void ScarePlayer()
+    {
+        enemyManager.ScarePlayerWithSound();
+        DisableEnemy();
+    }
+
 }
