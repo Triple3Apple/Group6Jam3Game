@@ -4,13 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HingeDoor : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool isKeyed = false;
     [SerializeField] private Item.ItemType keyRequired = Item.ItemType.BronzeKey;
+    [SerializeField] private GameObject keyPrompt = null;
+
     [SerializeField] private AudioClip doorOpenSFX = null;
     [SerializeField] private AudioClip doorCloseSFX = null;
+
     [SerializeField] private Transform pivotPoint = null;
     [SerializeField] private float duration = 2.4f;
     [SerializeField] private float openDegree = 0f;
@@ -41,6 +45,12 @@ public class HingeDoor : MonoBehaviour, IInteractable
         pivotPoint.DORotate(closedRot, duration, RotateMode.Fast);
     }
 
+    private IEnumerator UITimeout()
+    {
+        yield return new WaitForSeconds(1f);
+        keyPrompt.SetActive(false);
+    }
+
     public void OnStartHover()
     {
         //Debug.Log($"{gameObject.name} is ready to be opened.");
@@ -52,6 +62,9 @@ public class HingeDoor : MonoBehaviour, IInteractable
         {
             if (!Player.SearchForItem(new Item { itemType = keyRequired }))
             {
+                keyPrompt.SetActive(true);
+                keyPrompt.GetComponent<Text>().text = keyRequired.ToString() + " is required.";
+                StartCoroutine("UITimeout");
                 return;
             }
         }

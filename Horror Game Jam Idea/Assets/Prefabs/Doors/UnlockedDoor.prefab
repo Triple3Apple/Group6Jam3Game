@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3027301932217345043}
   m_Layer: 0
   m_Name: UnlockedDoor
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,15 +218,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3028482070012577244}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.85, y: 1.7245425e-17, z: -3.8833246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3032018891419653458}
   - {fileID: 3031530193372654908}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3027301932217345045
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKeyed: 0
+  keyRequired: 1
   doorOpenSFX: {fileID: 8300000, guid: 412156311e6aad94dac5571f0f59dc01, type: 3}
   doorCloseSFX: {fileID: 8300000, guid: 519da4ac7cf683149a309f55a700d420, type: 3}
   pivotPoint: {fileID: 3031595307073913448}

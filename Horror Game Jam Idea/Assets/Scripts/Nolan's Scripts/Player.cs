@@ -39,17 +39,13 @@ public class Player : MonoBehaviour
 
     public static bool SearchForItem(Item item)
     {
-        foreach(Item element in inventory.GetItemList())
+        List<Item> _inv = inventory.GetItemList();
+
+        if(_inv.Find(x => x.itemType == item.itemType) != null)
         {
-            if(element.itemType == item.itemType)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
+
         return false;
     }
 }

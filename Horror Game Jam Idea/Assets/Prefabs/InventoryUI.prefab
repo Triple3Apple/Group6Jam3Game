@@ -43,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09d1064844d2e742a0e3dbd778f329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlashlightSprite: {fileID: 0}
-  CrowbarSprite: {fileID: 0}
-  BlueKeySprite: {fileID: 0}
-  RedKeySprite: {fileID: 0}
-  GreenKeySprite: {fileID: 0}
+  FlashlightSprite: {fileID: 21300000, guid: d94400ae6ba272f4b8b9fdf3fd3297e0, type: 3}
+  BronzeKeySprite: {fileID: 21300000, guid: 9b80f09a7544ebc4eba87e1cdcb07033, type: 3}
+  SilverKeySprite: {fileID: 21300000, guid: 69e37b723b7f482438a193889ad0c76c, type: 3}
+  GoldKeySprite: {fileID: 21300000, guid: 38864b075a9ae0a45bee161964e487ba, type: 3}
 --- !u!1 &3759924216858613006
 GameObject:
   m_ObjectHideFlags: 0

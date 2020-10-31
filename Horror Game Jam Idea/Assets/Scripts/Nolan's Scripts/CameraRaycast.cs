@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraRaycast : MonoBehaviour
 {
     [SerializeField] private float range = 5f;
+    [SerializeField] private GameObject interactText = null;
 
     private IInteractable currentTarget;
     private Camera playerCam;
@@ -37,7 +38,12 @@ public class CameraRaycast : MonoBehaviour
 
             if(_interactable != null)
             {
-                if(_interactable == currentTarget)
+                if (hit.transform.gameObject.CompareTag("Interactable"))
+                {
+                    interactText.SetActive(true);
+                }
+
+                if (_interactable == currentTarget)
                 {
                     return;
                 }
@@ -46,12 +52,24 @@ public class CameraRaycast : MonoBehaviour
                     currentTarget.OnEndHover();
                     currentTarget = _interactable;
                     currentTarget.OnStartHover();
+
+                    //if (hit.transform.gameObject.CompareTag("Interactable"))
+                    //{
+                    //    interactText.SetActive(true);
+                    //}
+
                     return;
                 }
                 else
                 {
                     currentTarget = _interactable;
                     currentTarget.OnStartHover();
+
+                    //if (hit.transform.gameObject.CompareTag("Interactable"))
+                    //{
+                    //    interactText.SetActive(true);
+                    //}
+
                     return;
                 }
             }
@@ -74,5 +92,7 @@ public class CameraRaycast : MonoBehaviour
                 return;
             }
         }
+
+        interactText.SetActive(false);
     }
 }
