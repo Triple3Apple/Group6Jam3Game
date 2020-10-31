@@ -12,8 +12,7 @@ public class ItemAssets : MonoBehaviour
     }
 
     public Sprite FlashlightSprite;
-    public Sprite CrowbarSprite;
-    public Sprite BlueKeySprite;
-    public Sprite RedKeySprite;
-    public Sprite GreenKeySprite;
+    public Sprite BronzeKeySprite;
+    public Sprite SilverKeySprite;
+    public Sprite GoldKeySprite;
 }

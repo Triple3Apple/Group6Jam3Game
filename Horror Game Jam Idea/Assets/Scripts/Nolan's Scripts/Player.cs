@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (SearchForItem(new Item { itemType = Item.ItemType.Flashlight, amount = 1}))
+            if (SearchForItem(new Item { itemType = Item.ItemType.Flashlight }))
             {
                 if (isFlashlightOn)
                 {
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool SearchForItem(Item item)
+    public static bool SearchForItem(Item item)
     {
         foreach(Item element in inventory.GetItemList())
         {

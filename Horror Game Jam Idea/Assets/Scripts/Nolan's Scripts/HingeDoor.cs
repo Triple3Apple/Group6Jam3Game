@@ -2,10 +2,13 @@
 using DG.Tweening.Core;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HingeDoor : MonoBehaviour, IInteractable
 {
+    [SerializeField] private bool isKeyed = false;
+    [SerializeField] private Item.ItemType keyRequired = Item.ItemType.BronzeKey;
     [SerializeField] private AudioClip doorOpenSFX = null;
     [SerializeField] private AudioClip doorCloseSFX = null;
     [SerializeField] private Transform pivotPoint = null;
@@ -45,6 +48,14 @@ public class HingeDoor : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
+        if (isKeyed)
+        {
+            if (!Player.SearchForItem(new Item { itemType = keyRequired }))
+            {
+                return;
+            }
+        }
+
         if (!isOpen)
         {
             audioSource.Stop();
