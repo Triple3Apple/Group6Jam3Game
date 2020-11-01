@@ -90,7 +90,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3222900763145516761}
-  - component: {fileID: 8714044783802231354}
   m_Layer: 0
   m_Name: MetalDoor
   m_TagString: Interactable
@@ -117,19 +116,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8714044783802231354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2878323012001590371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b6713783c16ba4b8d5f1f334bee80d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockSFX: {fileID: 0}
 --- !u!1 &3788819888336716608
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,9 +208,11 @@ GameObject:
   - component: {fileID: 5754800731156117405}
   - component: {fileID: 6577135698574729555}
   - component: {fileID: 5833475285712065518}
+  - component: {fileID: 7861319213808049094}
+  - component: {fileID: 2411942634254164231}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -292,6 +280,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7861319213808049094
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267375643218412511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2619086233303812490, guid: 5523f6ef9a0adf4449c8d7c20687ae02, type: 3}
+--- !u!114 &2411942634254164231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267375643218412511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b6713783c16ba4b8d5f1f334bee80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedPrompt: {fileID: 0}
 --- !u!1 &6137183016842384795
 GameObject:
   m_ObjectHideFlags: 0

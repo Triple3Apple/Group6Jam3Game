@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8402220009212571291}
   - component: {fileID: 2126739734993568889}
   - component: {fileID: 3784993582821727559}
+  - component: {fileID: 2117385863356537667}
   m_Layer: 0
   m_Name: PivotDoor006
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -96,6 +97,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7067864996504862505, guid: 05eb8f1f85ad8e14bbdcb4d7157b014c, type: 3}
+--- !u!114 &2117385863356537667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2883486944369546665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b6713783c16ba4b8d5f1f334bee80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedPrompt: {fileID: 0}
 --- !u!1 &5243819443201550057
 GameObject:
   m_ObjectHideFlags: 0

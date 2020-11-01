@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameEnd : MonoBehaviour
 {
     [SerializeField] private Item.ItemType keyRequired = Item.ItemType.GoldKey;
-    [SerializeField] private GameObject keyPrompt;
+    [SerializeField] private GameObject keyPrompt = null;
 
     private void OnTriggerEnter(Collider collider)
     {

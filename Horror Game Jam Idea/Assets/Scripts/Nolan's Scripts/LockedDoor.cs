@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class LockedDoor : MonoBehaviour, IInteractable
 {
-    [SerializeField] private AudioClip lockSFX = null;
-
-    private AudioSource audioSource;
+    [SerializeField] private GameObject lockedPrompt = null;
 
     private void OnValidate()
     {
-        audioSource = GetComponent<AudioSource>();
+        if(lockedPrompt == null)
+        {
+            lockedPrompt = GameObject.Find("LockedDoorPrompt");
+        }
     }
 
     public void OnEndHover()
@@ -20,12 +21,19 @@ public class LockedDoor : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        audioSource.PlayOneShot(lockSFX);
-        Debug.Log("This door won't budge.");
+        //Debug.Log("This door won't budge.");
+        lockedPrompt.SetActive(true);
+        StartCoroutine("UITimeout");
     }
 
     public void OnStartHover()
     {
         return;
+    }
+
+    private IEnumerator UITimeout()
+    {
+        yield return new WaitForSeconds(1f);
+        lockedPrompt.SetActive(false);
     }
 }
