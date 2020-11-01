@@ -14,7 +14,9 @@ public class EmergencyLight : MonoBehaviour
     [SerializeField] private Renderer glassEmissionRend;
     private Material glassEmissionMaterial;
     private Color initialEmissionColor;
+    [SerializeField] private float initalLightItensity = 0.01f;
 
+    Tween currentTween;
 
     [SerializeField] Material normalGlassMaterial;
     [SerializeField] Material litGlassMaterial;
@@ -24,6 +26,7 @@ public class EmergencyLight : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        initalLightItensity = emergencyLight.intensity;
         //InitializeLightVariables();
     }
 
@@ -42,8 +45,11 @@ public class EmergencyLight : MonoBehaviour
         //glassEmissionMaterial.SetColor("_EmissionColor", col);
         glassEmissionRend.material = normalGlassMaterial;
         //Debug.Log("Stop emergency Light called---------------------------");
+
+        //emergencyLight.DOIntensity(initalLightItensity, 0.5f);
+        currentTween.Kill();
         emergencyLight.enabled = false;
-        DOTween.Kill(transform);
+        
     }
 
     public void ActivateEmergencyLights()
@@ -54,6 +60,7 @@ public class EmergencyLight : MonoBehaviour
         //Debug.Log("activate emergency light called---------------------------");
         glassEmissionRend.material = litGlassMaterial;
         emergencyLight.enabled = true;
-        emergencyLight.DOIntensity(maxLightItensity, sirenLightTime).SetLoops(-1, LoopType.Yoyo).SetEase(lightCurve);
+        emergencyLight.intensity = initalLightItensity;
+        currentTween = emergencyLight.DOIntensity(maxLightItensity, sirenLightTime).SetLoops(-1, LoopType.Yoyo).SetEase(lightCurve);
     }
 }

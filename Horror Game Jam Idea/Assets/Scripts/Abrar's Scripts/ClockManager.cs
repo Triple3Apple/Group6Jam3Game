@@ -59,9 +59,9 @@ public class ClockManager : MonoBehaviour
 
     private void InitialiseClock()
     {
-        clockHand.transform.rotation = Quaternion.Euler(-90f, clockHand.transform.rotation.y, clockHand.transform.rotation.z);
+        clockHand.transform.localRotation = Quaternion.Euler(-90f, clockHand.transform.localRotation.y, clockHand.transform.localRotation.z);
         Debug.Log("Initiualized clockhand");
-        initialXRot = clockHand.rotation.x;
+        initialXRot = clockHand.localRotation.x;
         InitializeLightsTime();
 
         //DoFourthClockCycleLightsOn();
