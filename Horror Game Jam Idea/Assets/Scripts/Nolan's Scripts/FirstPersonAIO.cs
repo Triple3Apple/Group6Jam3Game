@@ -373,7 +373,7 @@ public class FirstPersonAIO : MonoBehaviour {
             else if(Input.GetKeyDown(_crouchModifiers.crouchKey)){isCrouching = !isCrouching || _crouchModifiers.crouchOverride;}
             }
 
-        if(Input.GetButtonDown("Cancel")){ControllerPause();}
+        //if(Input.GetButtonDown("Cancel")){ControllerPause();}
         #endregion
 
         #region Movement Settings - Update
@@ -737,13 +737,13 @@ public class FirstPersonAIO : MonoBehaviour {
         enableCameraMovement = !enableCameraMovement;
     }
 
-    public void ControllerPause(){
-        controllerPauseState = !controllerPauseState;
-        if(lockAndHideCursor){
-            Cursor.lockState = controllerPauseState? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = controllerPauseState;
-        }
-    }
+    //public void ControllerPause(){
+    //    controllerPauseState = !controllerPauseState;
+    //    if(lockAndHideCursor){
+    //        Cursor.lockState = controllerPauseState? CursorLockMode.None : CursorLockMode.Locked;
+    //        Cursor.visible = controllerPauseState;
+    //    }
+    //}
 
 
 
