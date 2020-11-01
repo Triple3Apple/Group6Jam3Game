@@ -18,8 +18,8 @@ public class LightmapManagerTest : MonoBehaviour
     [SerializeField] private Texture2D[] darkDirTextures;
     [SerializeField] private Texture2D[] darkLightTextures;
 
-    private LightmapData[] lightMapsBright = new LightmapData[5];
-    private LightmapData[] lightMapsDark = new LightmapData[5];
+    private LightmapData[] lightMapsBright = new LightmapData[1];
+    private LightmapData[] lightMapsDark = new LightmapData[1];
 
     private bool isDark = false;
 

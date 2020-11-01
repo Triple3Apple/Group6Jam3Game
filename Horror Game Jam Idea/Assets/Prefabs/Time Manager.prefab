@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6ccbd4c51c80d4d9563c6ac51cf3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightsOnTime: 5
-  lightsOffTime: 5
+  lightsOnTime: 2
+  lightsOffTime: 10
+  fogIncreasePerSecond: 0.075
+  fogLimit: 0.1
