@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
     public void PlayPowerUpSound()
     {
         audioManSource.Stop();
-        Debug.Log("Played Power Up sound");
+        //Debug.Log("Played Power Up sound");
         audioManSource.volume = 0f;
         // ()=>ResetAudioVolume(initClockVolume)
         audioManSource.DOFade(initialVolume, powerUpSound.length).SetEase(powerdownSoundCurve);
@@ -70,7 +70,7 @@ public class AudioManager : MonoBehaviour
     // stop chase music
     public void StopChaseMusic()
     {
-        Debug.Log("STOPPING CHASE MUSIC---------------");
+        //Debug.Log("STOPPING CHASE MUSIC---------------");
         // fades chase music and then stops audio after 1 second
         chaseMusicAudioSource.DOFade(0, 1f).SetEase(Ease.Linear).OnComplete(chaseMusicAudioSource.Stop);
 
@@ -81,7 +81,7 @@ public class AudioManager : MonoBehaviour
     public void PlayCaughtMusic()
     {
         caughtAudioSource.volume = caughtVolume;
-        Debug.Log("Playing caught music!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //Debug.Log("Playing caught music!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         caughtAudioSource.Play();
     }
 

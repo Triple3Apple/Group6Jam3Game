@@ -193,7 +193,7 @@ public class EnemyAI : MonoBehaviour
         isChasingPlayer = false;
         enemyManager.NotChasingEnemy();
 
-        Debug.Log("INVESTIGATING");
+        //Debug.Log("INVESTIGATING");
 
         WaitUntilLightsOff:
 

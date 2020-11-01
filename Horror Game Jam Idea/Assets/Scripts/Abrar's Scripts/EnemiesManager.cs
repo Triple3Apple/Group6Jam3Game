@@ -23,7 +23,7 @@ public class EnemiesManager : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            Debug.Log("++++++++enabled enemy " + enemy.name);
+            //Debug.Log("++++++++enabled enemy " + enemy.name);
 
             enemy.GetComponent<EnemyAI>().EnableEnemy();
         }
@@ -33,7 +33,7 @@ public class EnemiesManager : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            Debug.Log("++++++++disabled enemy " + enemy.name);
+            //Debug.Log("++++++++disabled enemy " + enemy.name);
 
             enemy.GetComponent<EnemyAI>().DisableEnemy();
         }
@@ -48,7 +48,7 @@ public class EnemiesManager : MonoBehaviour
         // check if already playing chase music
         if (IsPlayingChaseMusic == false)
         {
-            Debug.Log("playing CHASE MUSIC");
+            //Debug.Log("playing CHASE MUSIC");
             IsPlayingChaseMusic = true;
             audioManager.PlayChaseMusic();
         }
@@ -58,7 +58,7 @@ public class EnemiesManager : MonoBehaviour
     {
         if (AreEnemiesChasing() == false)
         {
-            Debug.Log("stopping CHASE MUSIC");
+            //Debug.Log("stopping CHASE MUSIC");
             // if there are no enemies that are chasing the player then stop the chase music
             audioManager.StopChaseMusic();
             IsPlayingChaseMusic = false;

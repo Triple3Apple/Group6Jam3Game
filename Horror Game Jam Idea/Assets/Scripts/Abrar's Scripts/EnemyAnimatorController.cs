@@ -21,7 +21,7 @@ public class EnemyAnimatorController : MonoBehaviour
 
     public void SetAnimatorToWalk()
     {
-        Debug.Log("SET ISWALKING TO   TRUE");
+        //Debug.Log("SET ISWALKING TO   TRUE");
         enemyAnimator.SetBool(isWalking, true);
 
         enemyAnimator.SetBool(isIdling, false);

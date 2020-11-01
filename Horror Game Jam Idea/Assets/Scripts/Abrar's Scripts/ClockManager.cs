@@ -60,7 +60,7 @@ public class ClockManager : MonoBehaviour
     private void InitialiseClock()
     {
         clockHand.transform.localRotation = Quaternion.Euler(-90f, clockHand.transform.localRotation.y, clockHand.transform.localRotation.z);
-        Debug.Log("Initiualized clockhand");
+        //Debug.Log("Initiualized clockhand");
         initialXRot = clockHand.localRotation.x;
         InitializeLightsTime();
 
@@ -72,11 +72,11 @@ public class ClockManager : MonoBehaviour
         // find TimeManager object to set lightsOutTime and lightsOnTime
         TimeManager tm = FindObjectOfType<TimeManager>();
         lightsOnTime = tm.lightsOnTime;
-        Debug.Log("lights on time: " + lightsOnTime);
+        //Debug.Log("lights on time: " + lightsOnTime);
         lightsOffTime = tm.lightsOffTime;
-        Debug.Log("lights off time: " + lightsOffTime);
+        //Debug.Log("lights off time: " + lightsOffTime);
 
-        Debug.Log("time for clock has been set up");
+        //Debug.Log("time for clock has been set up");
     }
 
     // subribing to time events
@@ -186,7 +186,7 @@ public class ClockManager : MonoBehaviour
 
     private void IncreaseClockAudio()
     {
-        Debug.Log("Increasing clock Audio");
+        //Debug.Log("Increasing clock Audio");
         float initClockVolume = clockSoundSource.volume;
         clockSoundSource.DOFade(0.5f, lightsOnTime/4f).SetEase(clockSoundCurve).OnComplete(()=>ResetAudioVolume(initClockVolume));
     }

@@ -63,7 +63,7 @@ public class TimeManager : MonoBehaviour
     // this will/should be called by gamemanager when game officially starts
     public void StartGameTimeManager()
     {
-        Debug.Log("starting first coroutine");
+        //Debug.Log("starting first coroutine");
         StartCoroutine(RunUntilLightsOnTimerEnds());
     }
 
