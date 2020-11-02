@@ -18,8 +18,8 @@ public class LightmapManagerTest : MonoBehaviour
     [SerializeField] private Texture2D[] darkDirTextures;
     [SerializeField] private Texture2D[] darkLightTextures;
 
-    private LightmapData[] lightMapsBright = new LightmapData[2];
-    private LightmapData[] lightMapsDark = new LightmapData[2];
+    private LightmapData[] lightMapsBright = new LightmapData[8];
+    private LightmapData[] lightMapsDark = new LightmapData[8];
 
     private bool isDark = false;
 
@@ -28,7 +28,7 @@ public class LightmapManagerTest : MonoBehaviour
     void Start()
     {
         int lightmapTexturesCount = darkDirTextures.Length;
-        //lightMapsBright = new LightmapData[lightmapTexturesCount];
+        lightMapsBright = new LightmapData[lightmapTexturesCount];
         Debug.Log("brightDirTextures size: " + brightDirTextures.Length);
         Debug.Log("brightDirTextures size: " + brightDirTextures[0]);
 
@@ -46,7 +46,7 @@ public class LightmapManagerTest : MonoBehaviour
         }
 
         //-------------
-        //lightMapsDark = new LightmapData[lightmapTexturesCount];
+        lightMapsDark = new LightmapData[lightmapTexturesCount];
 
         for (int i = 0; i < darkDirTextures.Length; i++)
         {
