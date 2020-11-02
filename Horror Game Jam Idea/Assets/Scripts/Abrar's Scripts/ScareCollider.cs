@@ -25,7 +25,7 @@ public class ScareCollider : MonoBehaviour
         {
             enemy.ScarePlayer();
 
-            //GameManager.Scared();
+            GameManager.Scared();
         }
     }
 }

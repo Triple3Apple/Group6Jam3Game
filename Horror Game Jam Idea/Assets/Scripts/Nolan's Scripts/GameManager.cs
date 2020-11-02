@@ -22,4 +22,9 @@ public class GameManager : MonoBehaviour
 
         scareMeter.text = "Scare Meter: " + scareCount.ToString() + " / 4" ;
     }
+
+    public static void Scared()
+    {
+        scareCount += 1;
+    }
 }
