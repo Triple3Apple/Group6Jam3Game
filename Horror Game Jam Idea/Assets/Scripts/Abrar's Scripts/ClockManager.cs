@@ -165,6 +165,8 @@ public class ClockManager : MonoBehaviour
             lightOffLoopCount = 0;
             //DoFourthClockCycleLightsOn();
 
+            clockHand.transform.localRotation = Quaternion.Euler(-90f, clockHand.transform.localRotation.y, clockHand.transform.localRotation.z);
+
             return;
         }
 
