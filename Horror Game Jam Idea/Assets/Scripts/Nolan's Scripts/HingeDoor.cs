@@ -25,6 +25,11 @@ public class HingeDoor : MonoBehaviour, IInteractable
     private Vector3 openRot;
     private Vector3 closedRot;
 
+    // added by abrar for unlock sound
+    [Header("Optional")]
+    [SerializeField] private AudioSource unlockAudioSource;
+    private bool unlockSoundPlayed = false;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -35,6 +40,7 @@ public class HingeDoor : MonoBehaviour, IInteractable
 
     private void OpenDoor()
     {
+        PlayUnlockSound();
         audioSource.PlayOneShot(doorOpenSFX, .2f);
         pivotPoint.DORotate(openRot, duration, RotateMode.Fast);
     }
@@ -86,5 +92,16 @@ public class HingeDoor : MonoBehaviour, IInteractable
     public void OnEndHover()
     {
         //Debug.Log($"{gameObject.name} cannot be opened anymore.");
+    }
+
+    private void PlayUnlockSound()
+    {
+        if (unlockAudioSource == null)  return;
+
+        if (isKeyed == true && unlockSoundPlayed == false)
+        {
+            unlockSoundPlayed = true;
+            unlockAudioSource.Play();
+        }
     }
 }

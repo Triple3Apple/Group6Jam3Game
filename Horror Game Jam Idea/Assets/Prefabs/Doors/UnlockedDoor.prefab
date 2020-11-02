@@ -368,9 +368,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isKeyed: 0
   keyRequired: 1
+  keyPrompt: {fileID: 0}
   doorOpenSFX: {fileID: 8300000, guid: 412156311e6aad94dac5571f0f59dc01, type: 3}
   doorCloseSFX: {fileID: 8300000, guid: 519da4ac7cf683149a309f55a700d420, type: 3}
   pivotPoint: {fileID: 3031595307073913448}
   duration: 2.4
   openDegree: 0
   closedDegree: 90
+  unlockAudioSource: {fileID: 0}
