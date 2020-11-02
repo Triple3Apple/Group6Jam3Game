@@ -41,9 +41,12 @@ public class EnemyAI : MonoBehaviour
 
     private EnemiesManager enemyManager;
 
+    private AudioSource breathAudioSource;
+
     private void Awake()
     {
         enemyManager = FindObjectOfType<EnemiesManager>();
+        breathAudioSource = GetComponent<AudioSource>();
     }
 
 
@@ -51,7 +54,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         //enemyManager = FindObjectOfType<EnemiesManager>();
-
+        
         //sensor = GetComponent<FOVCollider>();
         steering.RotateTowardsTarget = false;
         enemyAnimController = GetComponent<EnemyAnimatorController>();
@@ -283,6 +286,8 @@ public class EnemyAI : MonoBehaviour
     // called by enemyManager (remember to add enemy to enemyManager list)
     public void DisableEnemy()
     {
+        breathAudioSource.Stop();
+
         //Debug.Log("-----------------------Enemy mOVEsPEED = 0------------------------");
         isChasingPlayer = false;
         enemyManager.NotChasingEnemy();
@@ -301,6 +306,8 @@ public class EnemyAI : MonoBehaviour
     public void EnableEnemy()
     {
         //Debug.Log("-----------------------Enemy mOVEsPEED = NORMAL------------------------");
+
+        breathAudioSource.Play();
 
         lightsAreOn = false;
 
