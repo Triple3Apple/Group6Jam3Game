@@ -24,6 +24,8 @@ public class ScareCollider : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.ScarePlayer();
+
+            //GameManager.Scared();
         }
     }
 }

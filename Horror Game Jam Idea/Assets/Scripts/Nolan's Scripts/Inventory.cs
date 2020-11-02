@@ -13,7 +13,12 @@ public class Inventory
     {
         itemList = new List<Item>();
 
-        //AddItem(new Item { itemType = Item.ItemType.Flashlight, amount = 1 });
+        // remove below
+        /*
+        AddItem(new Item { itemType = Item.ItemType.GoldKey});
+        AddItem(new Item { itemType = Item.ItemType.SilverKey});
+        AddItem(new Item { itemType = Item.ItemType.BronzeKey});
+        */
         //Debug.Log(itemList.Count);
     }
 

@@ -11,10 +11,17 @@ public class GameEnd : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (!collider.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
+
         //Debug.Log("Triggered");
         if (Player.SearchForItem(new Item { itemType = keyRequired }))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene(3);
         }
         else
         {
