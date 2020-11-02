@@ -89,6 +89,15 @@ public class ClockManager : MonoBehaviour
         TimeManager.onLightsOffTimerStart += DoLightsOffActions;
     }
 
+    private void OnDestroy()
+    {
+        TimeManager.onTimeManagerStarted -= InitialiseClock;
+
+        TimeManager.onLightsOnTimerStart -= DoLightsOnActions;
+
+        TimeManager.onLightsOffTimerStart -= DoLightsOffActions;
+    }
+
     // this will only run when the event onLightsOnTimerStart is recieved/heard
     private void DoLightsOnActions()
     {

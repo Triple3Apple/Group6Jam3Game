@@ -48,6 +48,13 @@ public class LightsManager : MonoBehaviour
         TimeManager.onLightsOffTimerStart += DoLightsOffActions;
     }
 
+    private void OnDestroy()
+    {
+        TimeManager.onLightsOnTimerStart -= DoLightsOnActions;
+
+        TimeManager.onLightsOffTimerStart -= DoLightsOffActions;
+    }
+
     private void DoLightsOnActions()
     {
         lightmapManager.ToggleLightsOn();
