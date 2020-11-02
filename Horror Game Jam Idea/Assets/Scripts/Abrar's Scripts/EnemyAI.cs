@@ -157,7 +157,7 @@ public class EnemyAI : MonoBehaviour
         steering.FaceTowardsTransform = targetToChase.transform;
 
         // when enemy sees player, increase enemy movement speed by a bit
-        steering.MoveSpeed = defaultMoveSpeed + 3f;
+        steering.MoveSpeed = defaultMoveSpeed + 2f;
 
 
         enemyAnimController.SetAnimatorToRun();
