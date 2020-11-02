@@ -27,6 +27,15 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AnimationCurve ambianceSoundCurve;
 
+    [SerializeField] private AudioSource easterEggScreamAudioSource;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayCreepyScream();
+        }
+    }
 
     private void Start()
     {
@@ -83,6 +92,16 @@ public class AudioManager : MonoBehaviour
         caughtAudioSource.volume = caughtVolume;
         //Debug.Log("Playing caught music!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         caughtAudioSource.Play();
+    }
+
+    // Easter egg for a friend who wanted his scream to be in the game
+    private void PlayCreepyScream()
+    {
+        if (easterEggScreamAudioSource != null)
+        {
+            easterEggScreamAudioSource.Stop();
+            easterEggScreamAudioSource.Play();
+        }
     }
 
 }

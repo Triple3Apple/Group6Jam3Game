@@ -35,13 +35,13 @@ public class HingeDoor : MonoBehaviour, IInteractable
 
     private void OpenDoor()
     {
-        audioSource.PlayOneShot(doorOpenSFX, .3f);
+        audioSource.PlayOneShot(doorOpenSFX, .2f);
         pivotPoint.DORotate(openRot, duration, RotateMode.Fast);
     }
 
     private void CloseDoor()
     {
-        audioSource.PlayOneShot(doorCloseSFX, .3f);
+        audioSource.PlayOneShot(doorCloseSFX, .2f);
         pivotPoint.DORotate(closedRot, duration, RotateMode.Fast);
     }
 
