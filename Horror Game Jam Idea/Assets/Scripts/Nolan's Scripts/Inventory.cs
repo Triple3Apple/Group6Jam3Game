@@ -24,6 +24,11 @@ public class Inventory
 
     public void AddItem(Item item)
     {
+        if (item.itemType != Item.ItemType.Flashlight)
+        {
+            GameManager.FoundKey();
+        }
+
         itemList.Add(item);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }

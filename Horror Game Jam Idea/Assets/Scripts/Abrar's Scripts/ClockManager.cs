@@ -132,7 +132,7 @@ public class ClockManager : MonoBehaviour
 
         if (lightOnLoopCount == 3)
         {
-            IncreaseClockAudio();
+            IncreaseClockAudioLightsOn();
         }
 
         //Debug.Log("starting forth clock cycle lights on, loopCount = " + loopCount);
@@ -172,7 +172,7 @@ public class ClockManager : MonoBehaviour
 
         if (lightOffLoopCount == 3)
         {
-            IncreaseClockAudio();
+            IncreaseClockAudioLightsOff();
         }
 
         //Debug.Log("starting forth clock cycle lights off, loopCount = " + loopCount);
@@ -195,11 +195,18 @@ public class ClockManager : MonoBehaviour
 
     }
 
-    private void IncreaseClockAudio()
+    private void IncreaseClockAudioLightsOn()
     {
         //Debug.Log("Increasing clock Audio");
         float initClockVolume = clockSoundSource.volume;
         clockSoundSource.DOFade(0.5f, lightsOnTime/4f).SetEase(clockSoundCurve).OnComplete(()=>ResetAudioVolume(initClockVolume));
+    }
+
+    private void IncreaseClockAudioLightsOff()
+    {
+        //Debug.Log("Increasing clock Audio");
+        float initClockVolume = clockSoundSource.volume;
+        clockSoundSource.DOFade(0.5f, lightsOffTime / 4f).SetEase(clockSoundCurve).OnComplete(() => ResetAudioVolume(initClockVolume));
     }
 
     private void ResetAudioVolume(float vol) { clockSoundSource.volume = vol;  }
