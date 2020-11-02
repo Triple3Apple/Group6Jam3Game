@@ -10,8 +10,8 @@ public class MainMenuClock : MonoBehaviour
     //[SerializeField] private float lightsOutTimer = 10f;
     //[SerializeField] private float lightsOnTimer = 60f;
 
-    private float lightsOffTime = 15f;
-    private float lightsOnTime = 15f;
+    [SerializeField] private float lightsOffTime = 15f;
+    [SerializeField] private float lightsOnTime = 15f;
 
     private float clockHandCurrentAngle = 0f;
     private float startAngle = -90f;

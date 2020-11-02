@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
-    public void QuitGame()
+    public void GoMainMenu()
     {
-        Debug.Log("Quitting menu");
-        Application.Quit();
+        Debug.Log("Going to main menu");
+        SceneManager.LoadScene(0);
 
+    }
+
+    public void RetryGame()
+    {
+        SceneManager.LoadScene(1);
     }
 }
