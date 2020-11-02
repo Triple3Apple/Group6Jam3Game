@@ -21,18 +21,20 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (SearchForItem(new Item { itemType = Item.ItemType.Flashlight }))
+            if (!SearchForItem(new Item { itemType = Item.ItemType.Flashlight }))
             {
-                if (isFlashlightOn)
-                {
-                    flashlight.SetActive(false);
-                    isFlashlightOn = false;
-                }
-                else
-                {
-                    flashlight.SetActive(true);
-                    isFlashlightOn = true;
-                }
+                return;
+            }
+
+            if (isFlashlightOn)
+            {
+                flashlight.SetActive(false);
+                isFlashlightOn = false;
+            }
+            else
+            {
+                flashlight.SetActive(true);
+                isFlashlightOn = true;
             }
         }
     }
