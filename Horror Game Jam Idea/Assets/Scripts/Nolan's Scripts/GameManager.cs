@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
 
     private static int scareCount = 0;
 
+    private void Awake()
+    {
+        scareCount = 0;
+    }
+
     private void Update()
     {
         if(scareCount >= 4)
