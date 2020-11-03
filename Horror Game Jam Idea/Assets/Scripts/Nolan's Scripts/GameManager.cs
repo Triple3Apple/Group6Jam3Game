@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     {
         // scareCount = 0;
         scareCount = maxScareCount;
+        keysFound = 0;
     }
 
     private void Update()
